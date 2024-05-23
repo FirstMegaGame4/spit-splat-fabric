@@ -2,21 +2,28 @@ package fr.firstmegagame4.spitsplat;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SpitSplat implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-    public static final Logger LOGGER = LoggerFactory.getLogger("spit_splat");
+
+    private static final Logger LOGGER = LoggerFactory.getLogger("spit_splat");
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		LOGGER.info("Splat is saying hello!");
+	}
 
-		LOGGER.info("Hello Fabric world!");
+	public static String id() {
+		return "spit_splat";
+	}
+
+	public static Identifier createId(String path) {
+		return new Identifier(SpitSplat.id(), path);
+	}
+
+	public static Logger getLogger() {
+		return SpitSplat.LOGGER;
 	}
 }
