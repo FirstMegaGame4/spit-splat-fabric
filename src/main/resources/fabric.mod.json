@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "spit_splat",
+	"version": "${version}",
+	"name": "Spit Splat",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"FirstMegaGame4",
+		"Paraste"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/spit-splat",
+		"sources": "https://github.com/FirstMegaGame4/fabric-example-mod"
+	},
+	"license": "Code: PolyForm-Shield-1.0.0\\nAssets: All Rights Reserved",
+	"icon": "assets/spit_splat/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"fr.firstmegagame4.spitsplat.SpitSplat"
+		],
+		"fabric-datagen": [
+			"fr.firstmegagame4.spitsplat.SpitSplatDataGenerator"
+		]
+	},
+	"mixins": [
+		"spit_splat.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
