@@ -1,0 +1,6 @@
+{
+  "parent": "splat:displaysettings/splatter.item",
+  "textures": {
+    "layer0": "splat:item/splatter"
+  }
+}
