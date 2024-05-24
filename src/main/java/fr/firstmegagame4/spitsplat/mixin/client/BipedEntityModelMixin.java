@@ -52,12 +52,12 @@ public class BipedEntityModelMixin<T extends LivingEntity> implements BipedEntit
 	}
 
 	@Override
-	public void spitsplat$splatterActionLeft(boolean state) {
+	public void spit_splat$splatterActionLeft(boolean state) {
 		this.splatterActionLeft = state;
 	}
 
 	@Override
-	public void spitsplat$splatterActionRight(boolean state) {
+	public void spit_splat$splatterActionRight(boolean state) {
 		this.splatterActionRight = state;
 	}
 }

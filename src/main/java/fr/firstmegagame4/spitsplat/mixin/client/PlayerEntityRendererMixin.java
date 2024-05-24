@@ -22,12 +22,12 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRendererMixi
 		if (!player.isSpectator()) {
 			BipedEntityModelDuck duck = (BipedEntityModelDuck) this.getModel();
 			if (player.getMainArm() == Arm.RIGHT) {
-				duck.spitsplat$splatterActionRight(this.getSpatterPose(player, Hand.MAIN_HAND));
-				duck.spitsplat$splatterActionRight(this.getSpatterPose(player, Hand.OFF_HAND));
+				duck.spit_splat$splatterActionRight(this.getSpatterPose(player, Hand.MAIN_HAND));
+				duck.spit_splat$splatterActionRight(this.getSpatterPose(player, Hand.OFF_HAND));
 			}
 			else {
-				duck.spitsplat$splatterActionRight(this.getSpatterPose(player, Hand.OFF_HAND));
-				duck.spitsplat$splatterActionRight(this.getSpatterPose(player, Hand.MAIN_HAND));
+				duck.spit_splat$splatterActionRight(this.getSpatterPose(player, Hand.OFF_HAND));
+				duck.spit_splat$splatterActionRight(this.getSpatterPose(player, Hand.MAIN_HAND));
 			}
 		}
 	}
