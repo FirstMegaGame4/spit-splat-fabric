@@ -1,5 +1,6 @@
 package fr.firstmegagame4.spitsplat.client.entity.renderer;
 
+import fr.firstmegagame4.spitsplat.client.entity.model.BubbleEntityModel;
 import fr.firstmegagame4.spitsplat.entity.BubbleEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -10,13 +11,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
-import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class BubbleEntityRenderer extends GeoEntityRenderer<BubbleEntity> {
 
-	public BubbleEntityRenderer(EntityRendererFactory.Context renderManager, GeoModel<BubbleEntity> model) {
-		super(renderManager, model);
+	public BubbleEntityRenderer(EntityRendererFactory.Context renderManager) {
+		super(renderManager, new BubbleEntityModel());
 		this.shadowRadius = 0.0f;
 	}
 

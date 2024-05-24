@@ -19,6 +19,9 @@
 		"main": [
 			"fr.firstmegagame4.spitsplat.SpitSplat"
 		],
+		"client": [
+			"fr.firstmegagame4.spitsplat.client.SpitSplatClient"
+		],
 		"fabric-datagen": [
 			"fr.firstmegagame4.spitsplat.SpitSplatDataGenerator"
 		]
