@@ -1,4 +1,7 @@
+import com.mmodding.gradle.api.EnvironmentTarget
+
 plugins {
+	id 'com.mmodding.gradle' version '0.0.5'
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
@@ -22,6 +25,37 @@ repositories {
 
 fabricApi {
 	configureDataGeneration()
+}
+
+mmodding {
+	configureFabricModJson {
+		name = "Spit Splat"
+		namespace = "spit_splat"
+		description = "The Spit Splat is a cute and tameable mod that will spawn on you at the slightest opportunity!"
+		license = "Code: PolyForm-Shield-1.0.0\\nAssets: All Rights Reserved"
+		icon = "assets/spit_splat/icon.png"
+		addAuthor("FirstMegaGame4")
+		addAuthor("Paraste")
+		withContact {
+			it.homepage = "https://modrinth.com/mod/spit-splat"
+			it.sources = "https://github.com/FirstMegaGame4/spitsplat-fabric"
+			it.issues = "https://github.com/FirstMegaGame4/spitsplat-fabric/issues"
+		}
+		environment = EnvironmentTarget.ANY
+		withEntrypoints {
+			it.init("fr.firstmegagame4.spitsplat.SpitSplat")
+			it.client("fr.firstmegagame4.spitsplat.client.SpitSplatClient")
+			it.custom("fabric-datagen", "fr.firstmegagame4.spitsplat.SpitSplatDataGenerator")
+		}
+		addMixin("spit_splat.mixins.json")
+		withDependencies {
+			it.javaVersion = ">=" + 17
+			it.minecraftVersion = "~" + project.minecraft_version
+			it.fabricLoaderVersion = ">=" + project.loader_version
+			it.fabricApiVersion = "*"
+			it.addDependency("geckolib", ">=" + project.geckolib_version + "-")
+		}
+	}
 }
 
 dependencies {
