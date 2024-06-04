@@ -1,20 +1,20 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "splat:item/splat_totem"
+    "layer0": "spit_splat:item/splat_totem"
   },
   "overrides": [
     {
       "predicate": {
         "cooldown": 0
       },
-      "model": "splat:item/splat_totem_0"
+      "model": "spit_splat:item/splat_totem_0"
     },
     {
       "predicate": {
         "cooldown": 0.000000001
       },
-      "model": "splat:item/splat_totem_1"
+      "model": "spit_splat:item/splat_totem_1"
     }
   ]
 }

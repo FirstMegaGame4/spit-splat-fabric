@@ -2,13 +2,14 @@
   "required": true,
   "package": "fr.firstmegagame4.spitsplat.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "client.LivingEntityMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
     "client.BipedEntityModelMixin",
-    "client.LivingEntityRendererMixin",
-    "client.PlayerEntityRendererMixin"
+    "client.LivingEntityRendererMixin"
   ]
 }

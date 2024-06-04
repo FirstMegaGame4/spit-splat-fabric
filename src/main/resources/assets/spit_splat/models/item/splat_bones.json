@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "splat:item/splats_bones"
+    "layer0": "spit_splat:item/splats_bones"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "splat:item/cooked_splat"
+    "layer0": "spit_splat:item/cooked_splat"
   }
 }

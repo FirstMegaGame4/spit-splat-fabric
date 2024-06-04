@@ -1,8 +1,6 @@
 package fr.firstmegagame4.spitsplat;
 
-import fr.firstmegagame4.spitsplat.init.SpitSplatEntities;
-import fr.firstmegagame4.spitsplat.init.SpitSplatItems;
-import fr.firstmegagame4.spitsplat.init.SpitSplatStatusEffects;
+import fr.firstmegagame4.spitsplat.init.*;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.Identifier;
@@ -20,6 +18,8 @@ public class SpitSplat implements ModInitializer {
 		SpitSplatItems.register();
 		SpitSplatEntities.register();
 		SpitSplatStatusEffects.register();
+		SpitSplatEvents.register();
+		SpitSplatDataComponents.register();
 	}
 
 	public static String id() {

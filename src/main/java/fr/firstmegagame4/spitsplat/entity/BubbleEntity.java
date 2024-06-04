@@ -31,13 +31,13 @@ public class BubbleEntity extends Entity implements GeoAnimatable {
 		super(type, world);
 	}
 
-	public void onSpawned(World world, Vec3d position) {
+	/* public void onSpawned(World world, Vec3d position) {
 		world.getEntitiesByClass(
 			LivingEntity.class,
 			Box.of(position, 4, 4, 4),
 			livingEntity -> livingEntity.hasStatusEffect(RegistryEntry.of(SpitSplatStatusEffects.BUBBLE_TRAP))
 		).stream().findFirst().ifPresent(this::startRiding);
-	}
+	} */
 
 	@Override
 	protected void initDataTracker(DataTracker.Builder builder) {
@@ -45,14 +45,14 @@ public class BubbleEntity extends Entity implements GeoAnimatable {
 		builder.add(ANIMATION, "bubble_animation");
 	}
 
-	@Override
+	/* @Override
 	public void baseTick() {
 		super.baseTick();
 		if (!this.hasVehicle() || !(this.getVehicle() instanceof LivingEntity livingEntity) || !livingEntity.hasStatusEffect(RegistryEntry.of(SpitSplatStatusEffects.BUBBLE_TRAP))) {
 			this.discard();
 		}
 		this.calculateDimensions();
-	}
+	} */
 
 	@Override
 	public void onRemoved() {

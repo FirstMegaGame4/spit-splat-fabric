@@ -1,30 +1,30 @@
 {
-  "splattershoot": {
-    "subtitle": "subtitles.splattershoot",
+  "splatter_shoot": {
+    "subtitle": "subtitles.splatter_shoot",
     "sounds": [
       {
-        "name": "spit_splat:splattershoot1",
+        "name": "spit_splat:splatter_shoot1",
         "stream": false
       },
       {
-        "name": "spit_splat:splattershoot2",
+        "name": "spit_splat:splatter_shoot2",
         "stream": false
       },
       {
-        "name": "spit_splat:splattershoot3",
+        "name": "spit_splat:splatter_shoot3",
         "stream": false
       },
       {
-        "name": "spit_splat:splattershoot4",
+        "name": "spit_splat:splatter_shoot4",
         "stream": false
       }
     ]
   },
-  "bubblepop": {
-    "subtitle": "subtitles.bubblepop",
+  "bubble_pop": {
+    "subtitle": "subtitles.bubble_pop",
     "sounds": [
       {
-        "name": "spit_splat:bubblepop",
+        "name": "spit_splat:bubble_pop",
         "stream": false
       }
     ]
@@ -33,19 +33,19 @@
     "subtitle": "subtitles.water_shockwave",
     "sounds": [
       {
-        "name": "spit_splat:watershockwave4",
+        "name": "spit_splat:water_shockwave4",
         "stream": false
       },
       {
-        "name": "spit_splat:watershockwave3",
+        "name": "spit_splat:water_shockwave3",
         "stream": false
       },
       {
-        "name": "spit_splat:watershockwave2",
+        "name": "spit_splat:water_shockwave2",
         "stream": false
       },
       {
-        "name": "spit_splat:watershockwave1",
+        "name": "spit_splat:water_shockwave1",
         "stream": false
       }
     ]

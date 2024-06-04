@@ -6,12 +6,19 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 
 public class SpitSplatStatusEffects {
 
-	public static final StatusEffect BUBBLE_TRAP = new BubbleTrapStatusEffect(StatusEffectCategory.HARMFUL, -10040065);
+	public static final RegistryEntry<StatusEffect> BUBBLE_TRAP = SpitSplatStatusEffects.register(
+		SpitSplat.createId("bubble_trap"),
+		new BubbleTrapStatusEffect(StatusEffectCategory.HARMFUL, -10040065)
+	);
 
-	public static void register() {
-		Registry.register(Registries.STATUS_EFFECT, SpitSplat.createId("bubble_trap"), SpitSplatStatusEffects.BUBBLE_TRAP);
+	public static void register() {}
+
+	private static RegistryEntry<StatusEffect> register(Identifier identifier, StatusEffect effect) {
+		return Registry.registerReference(Registries.STATUS_EFFECT, identifier, effect);
 	}
 }
