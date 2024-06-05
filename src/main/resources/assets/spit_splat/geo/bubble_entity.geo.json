@@ -13,10 +13,10 @@
 			"bones": [
 				{
 					"name": "Bubble",
-					"pivot": [0, 0, 0],
+					"pivot": [16, 16, 16],
 					"cubes": [
 						{
-							"origin": [-16, -21, -16],
+							"origin": [-8, -13, -24],
 							"size": [32, 32, 32],
 							"uv": {
 								"north": {"uv": [0, 0], "uv_size": [16, 16]},

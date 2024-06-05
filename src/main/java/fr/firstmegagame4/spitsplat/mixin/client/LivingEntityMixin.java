@@ -1,6 +1,5 @@
 package fr.firstmegagame4.spitsplat.mixin.client;
 
-import fr.firstmegagame4.spitsplat.init.SpitSplatEvents;
 import fr.firstmegagame4.spitsplat.init.SpitSplatStatusEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;

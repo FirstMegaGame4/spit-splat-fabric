@@ -2,7 +2,7 @@ package fr.firstmegagame4.spitsplat.item;
 
 import com.mojang.serialization.Codec;
 import fr.firstmegagame4.spitsplat.client.item.renderer.SplatterItemRenderer;
-import fr.firstmegagame4.spitsplat.entity.BubbleProjectileEntity;
+import fr.firstmegagame4.spitsplat.entity.BubbleEntity;
 import fr.firstmegagame4.spitsplat.init.SpitSplatDataComponents;
 import fr.firstmegagame4.spitsplat.init.SpitSplatItems;
 import fr.firstmegagame4.spitsplat.init.SpitSplatSoundEvents;
@@ -46,7 +46,7 @@ public class SplatterItem extends Item implements GeoItem {
 		}
 		world.playSound(null, BlockPos.ofFloored(user.getPos()), SpitSplatSoundEvents.SPLATTER_SHOT, SoundCategory.PLAYERS, 1.0f, 1.0f);
 		user.getItemCooldownManager().set(stack.getItem(), 40);
-		BubbleProjectileEntity projectile = new BubbleProjectileEntity(world, user);
+		BubbleEntity projectile = new BubbleEntity(world, user);
 		world.spawnEntity(projectile);
 		return new TypedActionResult<>(ActionResult.CONSUME, stack);
 	}

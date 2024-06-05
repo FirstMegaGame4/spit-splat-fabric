@@ -5,7 +5,7 @@ import fr.firstmegagame4.spitsplat.client.entity.renderer.dummy.BubbleDummy;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib.model.GeoModel;
 
-public class BubbleEntityModel extends GeoModel<BubbleDummy> {
+public class BubbleModel extends GeoModel<BubbleDummy> {
 
 	@Override
 	public Identifier getModelResource(BubbleDummy animatable) {

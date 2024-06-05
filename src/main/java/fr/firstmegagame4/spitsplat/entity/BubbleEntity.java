@@ -1,140 +1,78 @@
 package fr.firstmegagame4.spitsplat.entity;
 
+import fr.firstmegagame4.spitsplat.init.SpitSplatAttachments;
+import fr.firstmegagame4.spitsplat.init.SpitSplatEntities;
 import fr.firstmegagame4.spitsplat.init.SpitSplatStatusEffects;
-import net.minecraft.entity.*;
-import net.minecraft.entity.damage.DamageSource;
+import fr.firstmegagame4.spitsplat.payload.BubblePayload;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.projectile.thrown.ThrownEntity;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class BubbleEntity extends Entity implements GeoAnimatable {
-
-	public static final TrackedData<Boolean> SHOOT = DataTracker.registerData(BubbleEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-	public static final TrackedData<String> ANIMATION = DataTracker.registerData(BubbleEntity.class, TrackedDataHandlerRegistry.STRING);
-
-	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-	public String animationProcedure = "empty";
+public class BubbleEntity extends ThrownEntity {
 
 	public BubbleEntity(EntityType<? extends BubbleEntity> type, World world) {
 		super(type, world);
 	}
 
-	/* public void onSpawned(World world, Vec3d position) {
-		world.getEntitiesByClass(
-			LivingEntity.class,
-			Box.of(position, 4, 4, 4),
-			livingEntity -> livingEntity.hasStatusEffect(RegistryEntry.of(SpitSplatStatusEffects.BUBBLE_TRAP))
-		).stream().findFirst().ifPresent(this::startRiding);
-	} */
-
-	@Override
-	protected void initDataTracker(DataTracker.Builder builder) {
-		builder.add(SHOOT, false);
-		builder.add(ANIMATION, "bubble_animation");
-	}
-
-	/* @Override
-	public void baseTick() {
-		super.baseTick();
-		if (!this.hasVehicle() || !(this.getVehicle() instanceof LivingEntity livingEntity) || !livingEntity.hasStatusEffect(RegistryEntry.of(SpitSplatStatusEffects.BUBBLE_TRAP))) {
-			this.discard();
-		}
-		this.calculateDimensions();
-	} */
-
-	@Override
-	public void onRemoved() {
-		this.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1.0f, 1.0f);
+	public BubbleEntity(World world, LivingEntity owner) {
+		this(SpitSplatEntities.BUBBLE, world);
+		this.setOwner(owner);
+		this.setPosition(owner.getX(), owner.getEyeY() - 0.1f, owner.getZ());
+		this.setVelocity(
+			owner.getRotationVec(1).getX(),
+			owner.getRotationVec(1).getY(),
+			owner.getRotationVec(1).getZ(),
+			3.0f,
+			0
+		);
+		this.setSilent(true);
 	}
 
 	@Override
-	public void setNoGravity(boolean noGravity) {
-		super.setNoGravity(true);
-	}
+	protected void initDataTracker(DataTracker.Builder builder) {}
 
 	@Override
-	public boolean handleFallDamage(float fallDistance, float damageMultiplier, DamageSource damageSource) {
-		return false;
-	}
-
-	@Override
-	public boolean damage(DamageSource source, float amount) {
-		return false;
-	}
-
-	@Override
-	protected void readCustomDataFromNbt(NbtCompound nbt) {
-	}
-
-	@Override
-	protected void writeCustomDataToNbt(NbtCompound nbt) {
-	}
-
-	@Override
-	public EntityDimensions getDimensions(EntityPose pose) {
-		return super.getDimensions(pose).scaled(this.getVehicle() instanceof LivingEntity ? this.getVehicle().getHeight() * 0.7f : 1.0f);
-	}
-
-	@Override
-	public boolean shouldDismountUnderwater() {
-		return false;
-	}
-
-	@Override
-	public boolean isPushedByFluids() {
-		return false;
-	}
-
-	@Override
-	public void pushAwayFrom(Entity entity) {
-	}
-
-	private PlayState movementPredicate(AnimationState<BubbleEntity> event) {
-		if (this.animationProcedure.equals("empty")) {
-			return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
-		}
-		return PlayState.STOP;
-	}
-
-	private PlayState procedurePredicate(AnimationState<BubbleEntity> event) {
-		if (!this.animationProcedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-			event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationProcedure));
-			if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-				this.animationProcedure = "empty";
-				event.getController().forceAnimationReset();
+	protected void onEntityHit(EntityHitResult entityHitResult) {
+		super.onEntityHit(entityHitResult);
+		Entity target = entityHitResult.getEntity();
+		if (!(target instanceof SpitSplatEntity)) {
+			if (target instanceof LivingEntity livingTarget && !livingTarget.isBlocking()) {
+				livingTarget.addStatusEffect(new StatusEffectInstance(SpitSplatStatusEffects.BUBBLE_TRAP, 40, 1));
+				if (this.getWorld() instanceof ServerWorld world) {
+					livingTarget.setAttached(SpitSplatAttachments.BUBBLE_STARTED_AGE, target.age);
+					world.getPlayers().forEach(player -> ServerPlayNetworking.send(player, new BubblePayload(target.getId(), target.age)));
+				}
 			}
 		}
-		else if (this.animationProcedure.equals("empty")) {
-			return PlayState.STOP;
+	}
+
+	@Override
+	protected void onBlockHit(BlockHitResult blockHitResult) {
+		super.onBlockHit(blockHitResult);
+		if (this.getWorld() instanceof ServerWorld world) {
+			int x = blockHitResult.getBlockPos().getX();
+			int y = blockHitResult.getBlockPos().getY();
+			int z = blockHitResult.getBlockPos().getZ();
+			world.spawnParticles(ParticleTypes.BUBBLE, x+ 0.5, y + 0.5, z + 0.5, 20, 1, 1, 1, 0.1);
 		}
-		return PlayState.CONTINUE;
 	}
 
 	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-		controllers.add(new AnimationController<>(this, "movement", 4, this::movementPredicate));
-		controllers.add(new AnimationController<>(this, "procedure", 4, this::procedurePredicate));
-	}
-
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return this.cache;
-	}
-
-	@Override
-	public double getTick(Object object) {
-		return this.age;
+	public void tick() {
+		super.tick();
+		if (this.getWorld() instanceof ServerWorld world) {
+			if (this.age % 100 == 0) {
+				world.spawnParticles(ParticleTypes.BUBBLE, this.getX(), this.getY(), this.getZ(), 5, 0.2, 0.2, 0.2, 0);
+			}
+		}
 	}
 }

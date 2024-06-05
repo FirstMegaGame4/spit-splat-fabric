@@ -1,8 +1,8 @@
 package fr.firstmegagame4.spitsplat.client.entity.renderer.feature;
 
-import fr.firstmegagame4.spitsplat.client.entity.renderer.BubbleEntityRenderer;
+import fr.firstmegagame4.spitsplat.client.entity.renderer.BubbleRenderer;
 import fr.firstmegagame4.spitsplat.client.entity.renderer.dummy.BubbleDummy;
-import fr.firstmegagame4.spitsplat.init.SpitSplatStatusEffects;
+import fr.firstmegagame4.spitsplat.init.SpitSplatAttachments;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -15,7 +15,7 @@ import net.minecraft.entity.LivingEntity;
 
 public class BubbleEntityFeatureRenderer<T extends Entity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
 
-	private final BubbleEntityRenderer renderer = new BubbleEntityRenderer();
+	private final BubbleRenderer renderer = new BubbleRenderer();
 
 	public BubbleEntityFeatureRenderer(FeatureRendererContext<T, M> context) {
 		super(context);
@@ -24,11 +24,14 @@ public class BubbleEntityFeatureRenderer<T extends Entity, M extends EntityModel
 	@Override
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Entity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 		if (entity instanceof LivingEntity livingEntity) {
-			if (livingEntity.hasStatusEffect(SpitSplatStatusEffects.BUBBLE_TRAP)) {
+			if (livingEntity.hasAttached(SpitSplatAttachments.BUBBLE_STARTED_AGE)) {
+				matrices.push();
+				matrices.translate(0.0f, 0.501f - entity.getBoundingBox().getLengthY() + 1.0f, 0.0f);
 				BubbleDummy dummy = new BubbleDummy(livingEntity);
 				RenderLayer layer = this.renderer.getRenderType(dummy, this.renderer.getTextureLocation(dummy), vertexConsumers, tickDelta);
 				VertexConsumer consumer = vertexConsumers.getBuffer(layer);
 				this.renderer.render(matrices, dummy, vertexConsumers, layer, consumer, light);
+				matrices.pop();
 			}
 		}
 	}

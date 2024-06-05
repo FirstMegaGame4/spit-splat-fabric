@@ -13,13 +13,15 @@ public class SpitSplat implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Splat is saying hello!");
+		SpitSplat.getLogger().info("Splat is saying hello!");
 
 		SpitSplatItems.register();
 		SpitSplatEntities.register();
 		SpitSplatStatusEffects.register();
 		SpitSplatEvents.register();
 		SpitSplatDataComponents.register();
+		SpitSplatAttachments.register();
+		SpitSplatNetworking.register();
 	}
 
 	public static String id() {

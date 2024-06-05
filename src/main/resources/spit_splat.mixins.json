@@ -3,6 +3,7 @@
   "package": "fr.firstmegagame4.spitsplat.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityMixin",
     "client.LivingEntityMixin"
   ],
   "injectors": {

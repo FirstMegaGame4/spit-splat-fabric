@@ -22,7 +22,6 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 	@SuppressWarnings("unchecked")
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void addBubbleFeature(EntityRendererFactory.Context ctx, M model, float shadowRadius, CallbackInfo ci) {
-		SpitSplat.getLogger().info(((LivingEntityRenderer<T, M>) (Object) this).toString());
 		this.addFeature(new BubbleEntityFeatureRenderer<>((LivingEntityRenderer<T, M>) (Object) this));
 	}
 }
