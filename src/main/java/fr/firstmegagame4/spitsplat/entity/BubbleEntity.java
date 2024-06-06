@@ -53,6 +53,7 @@ public class BubbleEntity extends ThrownEntity {
 				}
 			}
 		}
+		this.discard();
 	}
 
 	@Override
