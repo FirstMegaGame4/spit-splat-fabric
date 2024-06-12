@@ -71,9 +71,7 @@ public class BubbleEntity extends ThrownEntity {
 	public void tick() {
 		super.tick();
 		if (this.getWorld() instanceof ServerWorld world) {
-			if (this.age % 100 == 0) {
-				world.spawnParticles(ParticleTypes.BUBBLE, this.getX(), this.getY(), this.getZ(), 5, 0.2, 0.2, 0.2, 0);
-			}
+			world.spawnParticles(ParticleTypes.BUBBLE, this.getX(), this.getY(), this.getZ(), 5, 0.2, 0.2, 0.2, 0);
 		}
 	}
 }
