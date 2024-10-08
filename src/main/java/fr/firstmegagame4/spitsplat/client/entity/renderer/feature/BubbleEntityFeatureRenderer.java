@@ -30,7 +30,7 @@ public class BubbleEntityFeatureRenderer<T extends Entity, M extends EntityModel
 				BubbleDummy dummy = new BubbleDummy(livingEntity);
 				RenderLayer layer = this.renderer.getRenderType(dummy, this.renderer.getTextureLocation(dummy), vertexConsumers, tickDelta);
 				VertexConsumer consumer = vertexConsumers.getBuffer(layer);
-				this.renderer.render(matrices, dummy, vertexConsumers, layer, consumer, light);
+				this.renderer.render(matrices, dummy, vertexConsumers, layer, consumer, light, tickDelta);
 				matrices.pop();
 			}
 		}
