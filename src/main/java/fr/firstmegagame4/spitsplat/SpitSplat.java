@@ -29,7 +29,7 @@ public class SpitSplat implements ModInitializer {
 	}
 
 	public static Identifier createId(String path) {
-		return new Identifier(SpitSplat.id(), path);
+		return Identifier.of(SpitSplat.id(), path);
 	}
 
 	public static Logger getLogger() {

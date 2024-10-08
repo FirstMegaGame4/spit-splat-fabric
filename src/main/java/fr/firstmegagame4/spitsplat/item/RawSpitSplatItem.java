@@ -12,11 +12,6 @@ public class RawSpitSplatItem extends Item {
 	}
 
 	@Override
-	public int getMaxUseTime(ItemStack stack) {
-		return 20;
-	}
-
-	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		return null;
 	}

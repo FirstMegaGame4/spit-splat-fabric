@@ -2,13 +2,13 @@ package fr.firstmegagame4.spitsplat.init;
 
 import fr.firstmegagame4.spitsplat.SpitSplat;
 import fr.firstmegagame4.spitsplat.item.SplatterItem;
-import net.minecraft.component.DataComponentType;
+import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class SpitSplatDataComponents {
 
-	public static final DataComponentType<SplatterItem.Animation> SPLATTER_ANIMATION = DataComponentType.<SplatterItem.Animation>builder()
+	public static final ComponentType<SplatterItem.Animation> SPLATTER_ANIMATION = ComponentType.<SplatterItem.Animation>builder()
 		.codec(SplatterItem.Animation.CODEC)
 		.cache()
 		.build();
