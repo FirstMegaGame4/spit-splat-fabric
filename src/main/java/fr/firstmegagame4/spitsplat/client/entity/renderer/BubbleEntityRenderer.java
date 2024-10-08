@@ -25,7 +25,7 @@ public class BubbleEntityRenderer extends EntityRenderer<BubbleEntity> {
 	public void render(BubbleEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
 		RenderLayer layer = this.renderer.getRenderType(this.dummy, this.renderer.getTextureLocation(this.dummy), vertexConsumers, tickDelta);
 		VertexConsumer consumer = vertexConsumers.getBuffer(layer);
-		this.renderer.render(matrices, this.dummy, vertexConsumers, layer, consumer, light);
+		this.renderer.render(matrices, this.dummy, vertexConsumers, layer, consumer, light, tickDelta);
 	}
 
 	@Override
