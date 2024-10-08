@@ -33,7 +33,7 @@ public class BubbleRenderer extends GeoObjectRenderer<BubbleDummy> {
 	}
 
 	@Override
-	public void preRender(MatrixStack poseStack, BubbleDummy animatable, BakedGeoModel model, @Nullable VertexConsumerProvider bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+	public void preRender(MatrixStack poseStack, BubbleDummy animatable, BakedGeoModel model, @Nullable VertexConsumerProvider bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int color) {
 		if (this.isFeature) {
 			this.scaleHeight = (float) (0.7 * animatable.getCaughtEntity().getBoundingBox().getLengthY());
 			this.scaleWidth = (float) (0.7 * animatable.getCaughtEntity().getBoundingBox().getLengthY());
@@ -42,6 +42,6 @@ public class BubbleRenderer extends GeoObjectRenderer<BubbleDummy> {
 			this.scaleHeight = 0.25f;
 			this.scaleWidth = 0.25f;
 		}
-		super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+		super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, color);
 	}
 }
